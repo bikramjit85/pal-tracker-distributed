@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Make gradle executable
+        run: chmod +x ./gradlew
       - name: Startup test database instance
         run: sudo service mysql start
       - name: Create test database
@@ -169,6 +171,8 @@ jobs:
           echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
           sudo apt-get update
           sudo apt-get install cf-cli
+      - name: Make gradle executable
+        run: chmod +x ./gradlew
       - name: Migate tracker-database
         run: |
           cf api "$CF_API_URL"
